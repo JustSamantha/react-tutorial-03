@@ -7,7 +7,7 @@ function App() {
     { text: 'Take out the garbage', isCompleted: true},
     { text: 'Make dinner', isCompleted: true}
   ]);
-  const [incompletTodos, setinCompletTodos] = useState([
+  const [incompletTodos, setinCompleteTodos] = useState([
     { text: 'Paint the house', isCompleted: false}
   ]);
   return (
