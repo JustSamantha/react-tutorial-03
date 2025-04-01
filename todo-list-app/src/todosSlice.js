@@ -8,6 +8,10 @@ export const todosSlice = createSlice({
         text: 'Go to the Store',
         isCompleted: true,
       },
+      {
+        text: 'New Todo',
+        isCompleted: false, 
+      },
     ],
   },
   reducers: {
@@ -31,3 +35,6 @@ export const todosSlice = createSlice({
     },
   },
 });
+
+export const { createTodo, markTodoAsCompleted, deleteTodo } =
+  todosSlice.actions;
