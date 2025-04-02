@@ -7,27 +7,26 @@ export const todosSlice = createSlice({
     value: [],
   },
   reducers: {
-    createTodo: (state, action) => {
-      state.value = [...state.value, {
-        text: action.payload,
-        isCompleted: false,
-      }];
-    },
     markTodoAsCompleted: (state, action) => {
       const text = action.payload;
-      const todo = state.value.find(t => t.text === text);
+      const todo = state.value.find((t) => t.text === text);
       todo.isCompleted = true;
     },
     deleteTodo: (state, action) => {
       const text = action.payload;
-      state.value = state.value.filter(t => t.text !== text);
+      state.value = state.value.filter((t) => t.text !== text);
+    },
+    todosUpdated: (state, action) => {
+      const updatedTodos = action.payload;
+      state.value = updatedTodos;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(loadingCompleted, (state, action) => {
       state.value = action.payload;
-    })
-  }
+    });
+  },
 });
 
-export const { createTodo, markTodoAsCompleted, deleteTodo } = todosSlice.actions;
+export const { markTodoAsCompleted, deleteTodo, todosUpdated } =
+  todosSlice.actions;
