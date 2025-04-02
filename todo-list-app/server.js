@@ -3,11 +3,13 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-let todos = [{
-  id: '123',
-  text: 'Add a server',
-  isCompleted: true,
-}];
+let todos = [
+  {
+    id: '123',
+    text: 'Add a server',
+    isCompleted: true,
+  },
+];
 
 app.use(express.json());
 
@@ -26,8 +28,8 @@ app.post('/api/todos', (req, res) => {
 });
 
 app.delete('/api/todos/:id', (req, res) => {
-  const todoId = parseInt(req.params.id);
-  todos = todos.filter(todo => todo.id !== todoId);
+  const todoId = req.params.id;
+  todos = todos.filter((todo) => todo.id !== todoId);
   res.send();
 });
 
@@ -35,7 +37,7 @@ app.put('/api/todos/:id', (req, res) => {
   const todoId = req.params.id;
   const updatedTodo = req.body;
 
-  const todoIndex = todos.findIndex(todo => todo.id === todoId);
+  const todoIndex = todos.findIndex((todo) => todo.id === todoId);
 
   if (todoIndex === -1) {
     return res.status(404).json({ message: 'Todo not found' });
