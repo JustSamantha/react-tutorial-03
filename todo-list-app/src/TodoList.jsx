@@ -3,7 +3,7 @@ import NewTodoForm from "./NewTodoForm"
 import TodoListItem from "./TodoListItem"
 
 export default function TodoList() {
-  const todosAreLoading = useSelector(state => state.loading.value.completed);
+  const todosAreLoading = useSelector(state => !state.loading.value.completed);
   const todos = useSelector(state => state.todos.value);
   
   return (
