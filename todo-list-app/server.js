@@ -3,19 +3,21 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-let todos = [{
-  id: '123',
-  text: 'Add a server',
-  isCompleted: true,
-}];
+let todos = [
+  {
+    id: '123',
+    text: 'Add a server',
+    isCompleted: true,
+  },
+];
 
 app.use(express.json());
 
-app.get('/todos', (req, res) => {
+app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 
-app.post('/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   const newTodo = {
     id: `${Date.now()}`,
     text: req.body.text,
@@ -25,17 +27,17 @@ app.post('/todos', (req, res) => {
   res.json(newTodo);
 });
 
-app.delete('/todos/:id', (req, res) => {
+app.delete('/api/todos/:id', (req, res) => {
   const todoId = parseInt(req.params.id);
-  todos = todos.filter(todo => todo.id !== todoId);
+  todos = todos.filter((todo) => todo.id !== todoId);
   res.send();
 });
 
-app.put('/todos/:id', (req, res) => {
+app.put('/api/todos/:id', (req, res) => {
   const todoId = req.params.id;
   const updatedTodo = req.body;
 
-  const todoIndex = todos.findIndex(todo => todo.id === todoId);
+  const todoIndex = todos.findIndex((todo) => todo.id === todoId);
 
   if (todoIndex === -1) {
     return res.status(404).json({ message: 'Todo not found' });
